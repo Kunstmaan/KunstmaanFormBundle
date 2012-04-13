@@ -19,7 +19,7 @@ class TextFormSubmissionType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('value', 'textarea', array('data_class' => 'Kunstmaan\FormBundle\Entity\FormSubmissionFieldTypes\StringFormSubmissionField', 'label' => $this->label, 'attr' => array( 'rows' => '6' )))
+            ->add('value', 'textarea', array('data_class' => 'Kunstmaan\FormBundle\Entity\FormSubmissionFieldTypes\StringFormSubmissionField', 'label' => $this->label, 'attr' => array( 'style' => 'width: 100%', 'rows' => '8' )))
         ;
     }
 
