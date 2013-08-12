@@ -12,7 +12,7 @@
             "email": "support@kunstmaan.be"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": ">=2.3.0,<2.4.0",
@@ -21,10 +21,10 @@
         "gregwar/form-bundle": "dev-master",
         "swiftmailer/swiftmailer": ">=4.2.0",
         "sensio/framework-extra-bundle": "*",
-        "kunstmaan/adminlist-bundle": "self.version",
-        "kunstmaan/node-bundle": "self.version",
-        "kunstmaan/admin-bundle": "self.version",
-        "kunstmaan/pagepart-bundle": "self.version"
+        "kunstmaan/adminlist-bundle": "2.3.*",
+        "kunstmaan/node-bundle": "2.3.*",
+        "kunstmaan/admin-bundle": "2.3.*",
+        "kunstmaan/pagepart-bundle": "2.3.*"
     },
     "autoload": {
         "psr-0": { "Kunstmaan\\FormBundle": "" }
