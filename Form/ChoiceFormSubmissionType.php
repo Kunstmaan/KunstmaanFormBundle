@@ -50,7 +50,7 @@ class ChoiceFormSubmissionType extends AbstractType
      * @param array  $choices    The choices array
      * @param array  $emptyValue The empty value
      */
-    public function __construct($label, $required, $expanded, $multiple, array $choices, $emptyValue = null)
+    public function __construct($label, $required, $expanded, $multiple, array $choices = array(), $emptyValue = null)
     {
         $this->label = $label;
         $this->required = $required;

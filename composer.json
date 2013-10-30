@@ -15,7 +15,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": ">=2.2,<2.3",
-        "ddeboer/data-import-bundle": "*",
+        "ddeboer/data-import-bundle": "*@dev",
         "gedmo/doctrine-extensions": "*",
         "gregwar/form-bundle": "dev-master",
         "swiftmailer/swiftmailer": ">=4.2.0",
@@ -24,6 +24,12 @@
         "kunstmaan/node-bundle": "2.2.*",
         "kunstmaan/admin-bundle": "2.2.*",
         "kunstmaan/pagepart-bundle": "2.2.*"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "2.1.*@dev",
+        "white-october/pagerfanta-bundle": "dev-master",
+        "pagerfanta/pagerfanta": "dev-master",
+        "friendsofsymfony/user-bundle": "2.0.*@dev"
     },
     "autoload": {
         "psr-0": { "Kunstmaan\\FormBundle": "" }
