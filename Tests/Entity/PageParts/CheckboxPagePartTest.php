@@ -3,18 +3,17 @@
 namespace Kunstmaan\FormBundle\Tests\Entity\PageParts;
 
 use ArrayObject;
-
-use Kunstmaan\FormBundle\Entity\PageParts\FileUploadPagePart;
-use Kunstmaan\FormBundle\Form\FileUploadPagePartAdminType;
+use Kunstmaan\FormBundle\Entity\PageParts\CheckboxPagePart;
+use Kunstmaan\FormBundle\Form\CheckboxPagePartAdminType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Tests for FileUploadPagePart
+ * Tests for ChoicePagePart
  */
-class FileUploadPagePartTest extends \PHPUnit_Framework_TestCase
+class CheckboxPagePartTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var FileUploadPagePart
+     * @var CheckboxPagePart
      */
     protected $object;
 
@@ -24,8 +23,17 @@ class FileUploadPagePartTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new FileUploadPagePart;
+        $this->object = new CheckboxPagePart();
     }
+
+
+    public function testGetDefaultView()
+    {
+        $stringValue = $this->object->getDefaultView();
+        $this->assertNotNull($stringValue);
+        $this->assertTrue(is_string($stringValue));
+    }
+
 
     public function testAdaptForm()
     {
@@ -42,30 +50,29 @@ class FileUploadPagePartTest extends \PHPUnit_Framework_TestCase
 
         $fields = new ArrayObject();
 
-        $object->setErrorMessageRequired('this is required');
         $this->assertTrue(count($fields) == 0);
+        $object->setErrorMessageRequired('omg sort it out');
         /* @var $formBuilder FormBuilderInterface */
         $object->adaptForm($formBuilder, $fields, 0);
         $this->assertTrue(count($fields) > 0);
-        $this->assertEquals('this is required', $object->getErrorMessageRequired());
     }
 
-    public function testGetDefaultView()
-    {
-        $stringValue = $this->object->getDefaultView();
-        $this->assertNotNull($stringValue);
-        $this->assertTrue(is_string($stringValue));
-    }
 
     public function testGetDefaultAdminType()
     {
-        $this->assertEquals(FileUploadPagePartAdminType::class, $this->object->getDefaultAdminType());
+        $adminType = $this->object->getDefaultAdminType();
+        $this->assertNotNull($adminType);
+        $this->assertEquals(CheckboxPagePartAdminType::class, $adminType);
     }
 
-    public function testGetSetRequired()
+
+    public function testErrorMessage()
     {
-        $obj = $this->object;
-        $obj->setRequired(true);
-        $this->assertTrue($obj->getRequired());
+        $object = $this->object;
+        $msg = 'fill in the form properly';
+        $object->setErrorMessageRequired($msg);
+        $this->assertEquals($msg, $object->getErrorMessageRequired());
     }
+
+
 }
