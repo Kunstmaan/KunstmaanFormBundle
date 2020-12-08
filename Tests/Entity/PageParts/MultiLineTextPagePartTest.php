@@ -8,9 +8,6 @@ use Kunstmaan\FormBundle\Form\MultiLineTextPagePartAdminType;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormBuilderInterface;
 
-/**
- * Tests for MultiLineTextPagePart
- */
 class MultiLineTextPagePartTest extends TestCase
 {
     /**
@@ -18,10 +15,6 @@ class MultiLineTextPagePartTest extends TestCase
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
         $this->object = new MultiLineTextPagePart();

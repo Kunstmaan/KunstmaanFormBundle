@@ -8,9 +8,6 @@ use Kunstmaan\FormBundle\Form\ChoicePagePartAdminType;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormBuilderInterface;
 
-/**
- * Tests for ChoicePagePart
- */
 class ChoicePagePartTest extends TestCase
 {
     /**
@@ -18,10 +15,6 @@ class ChoicePagePartTest extends TestCase
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
         $this->object = new ChoicePagePart();

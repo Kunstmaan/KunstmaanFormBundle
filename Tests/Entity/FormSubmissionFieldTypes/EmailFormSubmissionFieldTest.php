@@ -2,40 +2,36 @@
 
 namespace Kunstmaan\FormBundle\Tests\Entity\FormSubmissionFieldTypes;
 
-use Kunstmaan\FormBundle\Entity\FormSubmissionFieldTypes\StringFormSubmissionField;
-use Kunstmaan\FormBundle\Form\StringFormSubmissionType;
+use Kunstmaan\FormBundle\Entity\FormSubmissionFieldTypes\EmailFormSubmissionField;
+use Kunstmaan\FormBundle\Form\EmailFormSubmissionType;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests for StringFormSubmissionField
+ * Tests for EmailFormSubmissionField
  */
-class StringFormSubmissionFieldTest extends TestCase
+class EmailFormSubmissionFieldTest extends TestCase
 {
     /**
-     * @var StringFormSubmissionField
+     * @var EmailFormSubmissionField
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
-        $this->object = new StringFormSubmissionField();
+        $this->object = new EmailFormSubmissionField();
     }
 
     public function testSetGetValue()
     {
         $object = $this->object;
-        $value = 'test';
+        $value = 'test@test.be';
         $object->setValue($value);
         $this->assertEquals($value, $object->getValue());
     }
 
     public function testGetDefaultAdminType()
     {
-        $this->assertEquals(StringFormSubmissionType::class, $this->object->getDefaultAdminType());
+        $this->assertEquals(EmailFormSubmissionType::class, $this->object->getDefaultAdminType());
     }
 
     public function testToString()

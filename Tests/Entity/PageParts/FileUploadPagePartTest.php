@@ -8,9 +8,6 @@ use Kunstmaan\FormBundle\Form\FileUploadPagePartAdminType;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormBuilderInterface;
 
-/**
- * Tests for FileUploadPagePart
- */
 class FileUploadPagePartTest extends TestCase
 {
     /**
@@ -18,10 +15,6 @@ class FileUploadPagePartTest extends TestCase
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
         $this->object = new FileUploadPagePart();

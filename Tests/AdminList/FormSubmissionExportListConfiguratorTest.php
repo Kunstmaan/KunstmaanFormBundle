@@ -22,9 +22,6 @@ class FakeFormSubmission extends FormSubmission
     }
 }
 
-/**
- * This test tests the FormPageAdminListConfigurator
- */
 class FormSubmissionExportListConfiguratorTest extends TestCase
 {
     /**
@@ -32,10 +29,6 @@ class FormSubmissionExportListConfiguratorTest extends TestCase
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
         $em = $this->getMockedEntityManager();

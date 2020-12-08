@@ -7,35 +7,27 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Kunstmaan\AdminListBundle\AdminList\ItemAction\SimpleItemAction;
-use Kunstmaan\FormBundle\AdminList\FormPageAdminListConfigurator;
+use Kunstmaan\FormBundle\AdminList\FormSubmissionAdminListConfigurator;
 use Kunstmaan\NodeBundle\Entity\AbstractPage;
+use Kunstmaan\NodeBundle\Entity\Node;
+use Kunstmaan\NodeBundle\Entity\NodeTranslation;
 use PHPUnit\Framework\TestCase;
 
-/**
- * This test tests the FormPageAdminListConfigurator
- */
-class FormPageAdminListConfiguratorTest extends TestCase
+class FormSubmissionAdminListConfiguratorTest extends TestCase
 {
-    const PERMISSION_VIEW = 'view';
-
     /**
-     * @var FormPageAdminListConfigurator
+     * @var FormSubmissionAdminListConfigurator
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
         $em = $this->getMockedEntityManager();
-        $tokenStorage = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
-        $roleHierarchy = $this->getMockBuilder('Symfony\Component\Security\Core\Role\RoleHierarchyInterface')
-          ->getMock();
-        $aclHelper = $this->createMock('Kunstmaan\AdminBundle\Helper\Security\Acl\AclHelper');
-
-        $this->object = new FormPageAdminListConfigurator($em, $aclHelper, self::PERMISSION_VIEW);
+        $node = new Node();
+        $node->setId(666);
+        $nt = new NodeTranslation();
+        $nt->setNode($node);
+        $this->object = new FormSubmissionAdminListConfigurator($em, $nt);
     }
 
     /**
@@ -71,8 +63,12 @@ class FormPageAdminListConfiguratorTest extends TestCase
             ->method('innerJoin')
             ->will($this->returnSelf());
 
-        $queryBuilder->expects($this->once())
+        $queryBuilder->expects($this->atLeastOnce())
             ->method('andWhere')
+            ->will($this->returnSelf());
+
+        $queryBuilder->expects($this->atLeastOnce())
+            ->method('setParameter')
             ->will($this->returnSelf());
 
         /* @var QueryBuilder $queryBuilder */
@@ -85,22 +81,23 @@ class FormPageAdminListConfiguratorTest extends TestCase
         $item->method('getId')->willReturn(123);
 
         $this->assertEquals('', $this->object->getAddUrlFor([]));
-        $this->assertEquals('KunstmaanNodeBundle', $this->object->getBundleName());
-        $this->assertEquals('NodeTranslation', $this->object->getEntityName());
-        $this->assertEquals('KunstmaanFormBundle:FormSubmissions', $this->object->getControllerPath());
+        $this->assertEquals('KunstmaanFormBundle', $this->object->getBundleName());
+        $this->assertEquals('FormSubmission', $this->object->getEntityName());
         $this->assertCount(0, $this->object->getDeleteUrlFor($item));
-        $this->assertCount(1, $this->object->getIndexUrl());
+        $this->assertCount(2, $this->object->getIndexUrl());
         $this->assertCount(2, $this->object->getEditUrlFor($item));
+        $this->assertCount(2, $this->object->getExportUrl());
         $this->assertFalse($this->object->canAdd());
         $this->assertFalse($this->object->canEdit($item));
         $this->assertFalse($this->object->canDelete($item));
+        $this->assertTrue($this->object->canExport());
     }
 
     public function testBuildFilters()
     {
         $this->object->buildFilters();
         $filters = $this->object->getFilterBuilder()->getFilterDefinitions();
-        $this->assertCount(2, $filters);
+        $this->assertCount(3, $filters);
     }
 
     public function testBuildFields()

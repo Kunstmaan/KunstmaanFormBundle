@@ -6,9 +6,6 @@ use Kunstmaan\FormBundle\Entity\PageParts\SubmitButtonPagePart;
 use Kunstmaan\FormBundle\Form\SubmitButtonPagePartAdminType;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Tests for SubmitButtonPagePart
- */
 class SubmitButtonPagePartTest extends TestCase
 {
     /**
@@ -16,10 +13,6 @@ class SubmitButtonPagePartTest extends TestCase
      */
     protected $object;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     protected function setUp()
     {
         $this->object = new SubmitButtonPagePart();
